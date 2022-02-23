@@ -19,4 +19,5 @@ public class MealsServlet extends HttpServlet {
         request.getRequestDispatcher("/meals.jsp").forward(request, response);
     }
 
+
 }
