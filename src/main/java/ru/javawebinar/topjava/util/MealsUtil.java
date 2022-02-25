@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -43,5 +44,17 @@ public class MealsUtil {
 
     private static MealTo createTo(Meal meal, boolean excess) {
         return new MealTo(meal.getDateTime(), meal.getDescription(), meal.getCalories(), excess);
+    }
+
+    public static List<MealTo> getWithExceeded(List<Meal>meals, int caloriesPerDay) {
+        List<MealTo> mealsTo = new ArrayList<>();
+        for (Meal meal: meals) {
+            if (meal.getCalories() < caloriesPerDay) {
+                mealsTo.add(createTo(meal, true));
+            } else {
+                mealsTo.add(createTo(meal, false));
+            }
+        }
+        return null;
     }
 }
